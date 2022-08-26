@@ -1,0 +1,49 @@
+<h1 mat-dialog-title>Adicionar Produto</h1>
+<div mat-dialog-content>
+
+  <form [formGroup]="productForm">
+      <mat-form-field  appearance="fill">
+        <mat-label>Nome</mat-label>
+        <input formControlName="productName" matInput maxlength="256" placeholder="Ex. Mouse...">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Escolha uma categoria</mat-label>
+        <mat-select formControlName="category" >
+          <mat-option value="Informatica">Informatica</mat-option>
+          <mat-option value="Eletro">Eletro</mat-option>
+          <mat-option value="Cama, Mesa e Banho">Cama, Mesa e Banho</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Choose a date</mat-label>
+        <input formControlName="date" matInput [matDatepicker]="picker">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <label for=""><h1 class="h1-radio-title">Qualidade Produto</h1></label>
+      <mat-radio-group formControlName="typeProduct"  class="example-radio-group" aria-label="Select an option">
+        <mat-radio-button class="example-radio-button" *ngFor="let tipo of estadoProduto" [value]="tipo">
+          {{ tipo }}
+        </mat-radio-button>
+      </mat-radio-group>
+
+      <mat-form-field  appearance="fill">
+        <mat-label>Preço</mat-label>
+        <input formControlName="price" matInput type="number" >
+      </mat-form-field>
+
+      <mat-form-field  appearance="fill">
+        <mat-label>Comentário</mat-label>
+        <textarea formControlName="comment" matInput ></textarea>
+      </mat-form-field>
+  </form>
+
+</div>
+<div mat-dialog-actions [align]="'end'">
+  <button mat-raised-button (click)="addProduct()" color="primary">{{ labelButton }}</button>
+  <button mat-raised-button mat-dialog-close cdkFocusInitial color="warn">Cancelar</button>
+</div>
